@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Snake.cpp">
+      <Filter>Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>SFML_Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>SFML_Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeLogic.cpp">
+      <Filter>Snake</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeGfx.cpp">
+      <Filter>Snake</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Snake">
+      <UniqueIdentifier>{df80d2f9-79bb-4599-ad48-cfdb227d488b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SFML_Helpers">
+      <UniqueIdentifier>{871f31fb-42be-436f-87a1-0f506e7826f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Snake\res">
+      <UniqueIdentifier>{3d03ddd2-338f-4762-afb2-ee3d6dab8496}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Snake.h">
+      <Filter>Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Game.h">
+      <Filter>SFML_Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>SFML_Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeLogic.h">
+      <Filter>Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeGfx.h">
+      <Filter>Snake</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeDefines.h">
+      <Filter>Snake</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\apple.png">
+      <Filter>Snake\res</Filter>
+    </Image>
+    <Image Include="res\border.png">
+      <Filter>Snake\res</Filter>
+    </Image>
+    <Image Include="res\empty.png">
+      <Filter>Snake\res</Filter>
+    </Image>
+    <Image Include="res\snakeBody.png">
+      <Filter>Snake\res</Filter>
+    </Image>
+    <Image Include="res\snakeHead.png">
+      <Filter>Snake\res</Filter>
+    </Image>
+    <Image Include="res\snakeDead.png">
+      <Filter>Snake\res</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
