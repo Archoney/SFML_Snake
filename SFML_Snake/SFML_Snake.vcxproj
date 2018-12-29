@@ -147,6 +147,9 @@
     <Image Include="res\snakeDead.png" />
     <Image Include="res\snakeHead.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\ferrum.otf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\sfml_system.redist.2.5.1\build\native\sfml_system.redist.targets" Condition="Exists('..\packages\sfml_system.redist.2.5.1\build\native\sfml_system.redist.targets')" />

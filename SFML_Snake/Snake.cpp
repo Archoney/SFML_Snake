@@ -38,7 +38,7 @@ namespace SnakeGame
 		if (m_elapsedTime.asMilliseconds() > s_frameTime)
 		{
 			m_logic.update();
-			m_gfx.update(m_logic.getBoard());
+			m_gfx.update(m_logic);
 
 			m_elapsedTime -= sf::milliseconds(s_frameTime);
 		}

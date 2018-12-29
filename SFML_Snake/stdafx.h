@@ -16,6 +16,7 @@
 #include <random>
 #include <set>
 #include <string>
+#include <sstream>
 
 // Type alliases
 using DrawFunc = std::function<void(const sf::Drawable&)>;

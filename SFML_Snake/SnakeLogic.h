@@ -17,13 +17,16 @@ namespace SnakeGame
 		void requestDirectionChange(Direction direction);
 
 		const LogicBoard& getBoard() const;
+		unsigned getScore() const;
 		bool isGameOver() const;
 
 	private:
 		LogicBoard m_board;
+		unsigned m_score{};
+		bool m_isGameOver{};
+		
 		std::list<sf::Vector2u> m_snake;
 		std::list<Direction> m_directions{};
-		bool m_isGameOver{};
 		sf::Clock m_randomSeedClock;
 
 		void setSnakeOnBoard();

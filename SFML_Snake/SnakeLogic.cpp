@@ -11,7 +11,9 @@ namespace SnakeGame
 	void Logic::start()
 	{
 		if (m_isGameOver)
+		{
 			reset();
+		}
 		
 		m_directions.push_back(Direction::Up);
 	}
@@ -19,21 +21,26 @@ namespace SnakeGame
 	void Logic::reset()
 	{
 		m_directions.clear();
+		m_score = 0;
 		m_isGameOver = false;
 
 		for (unsigned column{}; column < s_gridSize; ++column)
+		{
 			for (unsigned row{}; row < s_gridSize; ++row)
 			{
 				const bool isOnBorder = column == 0 || row == 0
-						|| column == s_gridSize - 1 || row == s_gridSize - 1;
+					|| column == s_gridSize - 1 || row == s_gridSize - 1;
 				m_board[column][row] = isOnBorder ?
 					BoardObject::Border : BoardObject::Empty;
 			}
+		}
 
 		m_snake.clear();
 		const auto& snakeHeadCoord = sf::Vector2u{ s_gridSize / 2, s_gridSize / 2 };
 		for (unsigned index = 0; index < s_snakeStartSize; ++index)
-			m_snake.emplace_back(sf::Vector2u{snakeHeadCoord.x, snakeHeadCoord.y + index});
+		{
+			m_snake.emplace_back(sf::Vector2u{ snakeHeadCoord.x, snakeHeadCoord.y + index });
+		}
 
 		setSnakeOnBoard();
 		spawnApple();
@@ -42,7 +49,9 @@ namespace SnakeGame
 	void Logic::setSnakeOnBoard()
 	{
 		for (const auto& snakeSegment : m_snake)
+		{
 			m_board[snakeSegment.x][snakeSegment.y] = BoardObject::SnakeBody;
+		}
 
 		const auto snakeHead = m_snake.front();
 		m_board[snakeHead.x][snakeHead.y] = m_isGameOver ?
@@ -53,12 +62,20 @@ namespace SnakeGame
 	{
 		std::vector<sf::Vector2u> validCoords;
 		for (unsigned column{}; column < s_gridSize; ++column)
+		{
 			for (unsigned row{}; row < s_gridSize; ++row)
+			{
 				if (m_board[column][row] == BoardObject::Empty)
+				{
 					validCoords.push_back(sf::Vector2u{ column, row });
+				}
+			}
+		}
 
 		if (validCoords.empty())
+		{
 			m_isGameOver = true;
+		}
 		else if (validCoords.size() == 1)
 		{
 			const auto& coord = validCoords.front();
@@ -80,7 +97,9 @@ namespace SnakeGame
 		if (!m_isGameOver && !m_directions.empty())
 		{
 			if (m_directions.size() > 1)
+			{
 				m_directions.pop_front();
+			}
 
 			move();
 			setSnakeOnBoard();
@@ -107,7 +126,10 @@ namespace SnakeGame
 			m_snake.pop_back();
 		}
 		else
+		{
 			spawnApple();
+			++m_score;
+		}
 
 		if (m_board[target.x][target.y] == BoardObject::Border
 			|| m_board[target.x][target.y] == BoardObject::SnakeBody)
@@ -119,14 +141,18 @@ namespace SnakeGame
 	void Logic::requestDirectionChange(Direction direction)
 	{
 		if (!m_directions.empty() && m_directions.size() <= 3
-				&& isValidDirectionChange(m_directions.back(), direction))
+			&& isValidDirectionChange(m_directions.back(), direction))
+		{
 			m_directions.push_back(direction);
+		}
 	}
 
 	bool Logic::isValidDirectionChange(Direction source, Direction target) const
 	{
 		if (source == target)
+		{
 			return false;
+		}
 
 		switch (target)
 		{
@@ -141,6 +167,11 @@ namespace SnakeGame
 	const LogicBoard& Logic::getBoard() const
 	{
 		return m_board;
+	}
+
+	unsigned Logic::getScore() const
+	{
+		return m_score;
 	}
 
 	bool Logic::isGameOver() const

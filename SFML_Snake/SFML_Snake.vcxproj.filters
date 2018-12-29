@@ -73,4 +73,9 @@
       <Filter>Snake\res</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\ferrum.otf">
+      <Filter>Snake\res</Filter>
+    </Font>
+  </ItemGroup>
 </Project>
