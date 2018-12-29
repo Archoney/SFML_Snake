@@ -22,7 +22,6 @@ public:
 
 private:
 	sf::Clock m_clock;
-	sf::Int32 m_elapsedTime;
 	std::unique_ptr<Window> m_window;
 	boost::signals2::signal<void(sf::Time)> m_updateSignal;
 };

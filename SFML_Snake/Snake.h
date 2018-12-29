@@ -15,5 +15,7 @@ namespace SnakeGame
 	private:
 		Logic m_logic;
 		Gfx m_gfx;
+		sf::Time m_elapsedTime{};
+		bool m_isActive{};
 	};
 }

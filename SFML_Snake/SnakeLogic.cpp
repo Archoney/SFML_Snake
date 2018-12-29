@@ -7,6 +7,15 @@ namespace SnakeGame
 	{
 		reset();
 	}
+
+	void Logic::start()
+	{
+		if (m_isGameOver)
+			reset();
+		
+		m_directions.push_back(Direction::Up);
+	}
+
 	void Logic::reset()
 	{
 		m_directions.clear();
@@ -42,24 +51,27 @@ namespace SnakeGame
 
 	void Logic::spawnApple()
 	{
-		std::vector<BoardObject*> validCoords;
+		std::vector<sf::Vector2u> validCoords;
 		for (unsigned column{}; column < s_gridSize; ++column)
 			for (unsigned row{}; row < s_gridSize; ++row)
 				if (m_board[column][row] == BoardObject::Empty)
-					validCoords.push_back(&m_board[column][row]);
+					validCoords.push_back(sf::Vector2u{ column, row });
 
 		if (validCoords.empty())
 			m_isGameOver = true;
 		else if (validCoords.size() == 1)
 		{
-			*(validCoords.front()) = BoardObject::Apple;
+			const auto& coord = validCoords.front();
+			m_board[coord.x][coord.y] = BoardObject::Apple;
 		}
 		else
 		{
 			std::mt19937 randomEngine(m_randomSeedClock.getElapsedTime().asMilliseconds());
 			std::uniform_int_distribution<size_t> uniformDistribution(0, validCoords.size() - 1);
 			const size_t randomIndex = uniformDistribution(randomEngine);
-			*(validCoords[randomIndex]) = BoardObject::Apple;
+
+			const auto& coord = validCoords[randomIndex];
+			m_board[coord.x][coord.y] = BoardObject::Apple;
 		}
 	}
 
@@ -72,7 +84,6 @@ namespace SnakeGame
 
 			move();
 			setSnakeOnBoard();
-
 		}
 	}
 
@@ -107,9 +118,8 @@ namespace SnakeGame
 
 	void Logic::requestDirectionChange(Direction direction)
 	{
-		if (m_directions.empty() 
-			|| (m_directions.size() <= 3
-				&& isValidDirectionChange(m_directions.back(), direction)))
+		if (!m_directions.empty() && m_directions.size() <= 3
+				&& isValidDirectionChange(m_directions.back(), direction))
 			m_directions.push_back(direction);
 	}
 

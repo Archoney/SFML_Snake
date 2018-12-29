@@ -9,6 +9,7 @@ namespace SnakeGame
 	public:
 		Logic();
 
+		void start();
 		void reset();
 		void update();
 
